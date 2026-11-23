@@ -1,0 +1,14 @@
+# Gizli bilgiler: API anahtarları ASLA depoya girmemeli
+.env
+.env.*
+!.env.example
+
+# Vercel ve Node
+.vercel
+node_modules/
+
+# İşletim sistemi / editör
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

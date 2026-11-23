@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MEF Kütüphane Sanal Asistanı</title>
+  <meta name="description" content="MEF Üniversitesi Kütüphanesi için yapay zekâ destekli sanal asistan: çalışma saatleri, ödünç verme, veri tabanları, kaynak arama ve APA kaynakça.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/site.css">
+  <script src="/js/site.js" defer></script>
+  <script src="/widget.js" data-lang="tr" defer></script>
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <p class="eyebrow">MEF Üniversitesi Kütüphanesi · Sürüm 2.0</p>
+      <h1>MEF Kütüphane Sanal Asistanı</h1>
+      <p class="lead">Kütüphane hizmetleri, çalışma saatleri, üyelik, ödünç verme, akademik veri tabanları,
+        kitap ve makale arama ve APA 7 kaynakça konularında Türkçe ve İngilizce yardım.</p>
+      <div class="actions">
+        <button type="button" class="btn btn--primary" data-open-assistant>Asistanı aç</button>
+        <a class="btn btn--ghost" href="/embed">Tam ekran sohbet</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="grid" aria-label="Özellikler">
+      <article class="feature">
+        <h2>Doğrulanmış bilgi</h2>
+        <p>Yanıtlar kütüphane sitesinden derlenen bilgi dosyalarına dayanır. Bilgi yoksa asistan uydurmaz,
+          sizi kütüphaneye yönlendirir.</p>
+      </article>
+      <article class="feature">
+        <h2>Kaynak arama</h2>
+        <p>Aradığınız konu için All in MEF (EBSCO) ve kütüphane kataloğunda hazır arama bağlantıları sunar.</p>
+      </article>
+      <article class="feature">
+        <h2>APA 7 kaynakça</h2>
+        <p>DOI yapıştırın; kaynakça Crossref verisinden otomatik oluşturulur ve tek tıkla kopyalanır.</p>
+      </article>
+      <article class="feature">
+        <h2>Güvenli mimari</h2>
+        <p>OpenAI API anahtarı yalnızca sunucuda tutulur; tarayıcıya hiçbir zaman gönderilmez.</p>
+      </article>
+    </section>
+
+    <section class="embed" aria-labelledby="embed-title">
+      <h2 id="embed-title">Web sitenize ekleyin</h2>
+      <p>Aşağıdaki satırı sitenizdeki sayfaların <code>&lt;/body&gt;</code> etiketinden hemen önce ekleyin.
+        Sağ alt köşede sohbet düğmesi görünür.</p>
+      <div class="snippet">
+        <pre><code id="snippet">&lt;script src="/widget.js" data-lang="auto" defer&gt;&lt;/script&gt;</code></pre>
+        <button type="button" class="btn btn--small" id="copy-snippet">Kopyala</button>
+      </div>
+      <p class="muted">Seçenekler: <code>data-lang="tr|en|auto"</code>, <code>data-position="right|left"</code>,
+        <code>data-open="true"</code>. Ayrıntılar depodaki <code>docs/WIDGET-ENTEGRASYONU.md</code> dosyasında.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>MEF Üniversitesi Kütüphanesi · <a href="https://library.mef.edu.tr" target="_blank" rel="noopener noreferrer">library.mef.edu.tr</a>
+        · <a href="mailto:library@mef.edu.tr">library@mef.edu.tr</a></p>
+      <p class="muted">İlk sürüm © 2024 Ramazan Çelik, Neslihan Erdoğan ve Gaye Yılmaz.</p>
+    </div>
+  </footer>
+</body>
+</html>

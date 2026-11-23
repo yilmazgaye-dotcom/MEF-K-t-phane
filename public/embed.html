@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex">
+  <title>MEF Kütüphane Sanal Asistanı</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/chat.css">
+  <script type="module" src="/js/chat.js"></script>
+</head>
+<body>
+  <div class="chat" id="app">
+    <header class="chat__header">
+      <div class="chat__brand">
+        <span class="chat__avatar" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false"><path fill="currentColor" d="M18 2H8a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h11v-2H8a1 1 0 0 1 0-2h11V3a1 1 0 0 0-1-1zm-1 14H8c-.35 0-.69.06-1 .17V5a1 1 0 0 1 1-1h9v12z"/><path fill="currentColor" d="M10 6h5v2h-5zM10 9h5v2h-5z"/></svg>
+        </span>
+        <div class="chat__heading">
+          <h1 class="chat__title" id="chat-title">MEF Kütüphane Sanal Asistanı</h1>
+          <p class="chat__subtitle" id="chat-subtitle">Yapay zekâ destekli yardım</p>
+        </div>
+      </div>
+      <div class="chat__actions">
+        <button type="button" class="icon-btn lang-btn" id="lang-btn">EN</button>
+        <button type="button" class="icon-btn" id="new-btn" aria-label="Yeni sohbet" title="Yeni sohbet">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M17.65 6.35A7.96 7.96 0 0 0 12 4a8 8 0 1 0 7.73 10h-2.08A6 6 0 1 1 12 6c1.66 0 3.14.69 4.22 1.78L13 11h7V4z"/></svg>
+        </button>
+        <button type="button" class="icon-btn" id="close-btn" aria-label="Kapat" title="Kapat" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M19 6.4 17.6 5 12 10.6 6.4 5 5 6.4 10.6 12 5 17.6 6.4 19 12 13.4 17.6 19 19 17.6 13.4 12z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="chat__log" id="log" role="log" aria-live="polite" aria-relevant="additions text" aria-labelledby="chat-title" tabindex="0"></main>
+
+    <div class="chat__quick" id="quick" role="group"></div>
+
+    <form class="chat__composer" id="composer" autocomplete="off">
+      <label class="visually-hidden" for="input" id="input-label">Mesajınız</label>
+      <textarea id="input" rows="1" maxlength="2000" placeholder="Mesajınızı yazın…" enterkeyhint="send"></textarea>
+      <button type="submit" class="send-btn" id="send-btn" aria-label="Gönder"></button>
+    </form>
+    <p class="chat__counter" id="counter" aria-live="polite" hidden></p>
+    <footer class="chat__footer" id="footer"></footer>
+  </div>
+  <noscript><p class="noscript">Sohbet asistanı için JavaScript gereklidir. / JavaScript is required.</p></noscript>
+</body>
+</html>
