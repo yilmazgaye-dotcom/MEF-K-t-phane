@@ -13,7 +13,8 @@ import {
   isOriginAllowed,
   validateChatPayload,
 } from '../lib/security.js';
-import { loadKnowledge } from '../lib/knowledge.js';
+import { loadAnswers, loadKnowledge } from '../lib/knowledge.js';
+import { answerQuestion } from '../lib/rules.js';
 import { buildInstructions } from '../lib/prompt.js';
 import { UpstreamError, streamResponse } from '../lib/openai.js';
 import { extractDoi, lookupDoi } from '../lib/crossref.js';
@@ -66,7 +67,8 @@ export async function POST(request) {
     return json(429, { error: 'rate_limited', retryAfter: rate.retryAfter }, { 'Retry-After': String(rate.retryAfter) });
   }
 
-  if (!config.apiKey) return json(503, { error: 'not_configured' });
+  // Anahtar yoksa (mode=auto) hazır yanıt moduna geçilir; yalnızca mode=ai iken anahtar zorunludur.
+  if (config.useAI && !config.apiKey) return json(503, { error: 'not_configured' });
 
   if (!(request.headers.get('content-type') || '').includes('application/json')) {
     return json(415, { error: 'unsupported_media_type' });
@@ -97,8 +99,18 @@ export async function POST(request) {
         }
       };
       try {
-        const citation = await resolveCitation(messages[messages.length - 1].content);
+        const lastMessage = messages[messages.length - 1].content;
+        const citation = await resolveCitation(lastMessage);
         if (citation?.status === 'ok') send({ type: 'citation', citation: citation.apa });
+
+        if (!config.useAI) {
+          // Hazır yanıt modu: OpenAI'a istek gönderilmez, ücret oluşmaz.
+          const entries = await loadAnswers();
+          const result = answerQuestion({ entries, text: lastMessage, uiLang: lang, citation });
+          send({ type: 'delta', text: result.text });
+          send({ type: 'done' });
+          return;
+        }
 
         const docs = await loadKnowledge();
         const instructions = buildInstructions({ docs, lang, now: new Date(), citation });

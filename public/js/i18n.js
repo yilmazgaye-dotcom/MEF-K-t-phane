@@ -8,7 +8,7 @@ export const LINKS = Object.freeze({
 export const STRINGS = {
   tr: {
     title: 'MEF Kütüphane Sanal Asistanı',
-    subtitle: 'Yapay zekâ destekli yardım',
+    subtitle: 'Kütüphane bilgi asistanı',
     welcome:
       'Merhaba! MEF Üniversitesi Kütüphanesi Sanal Asistanı\'na hoş geldiniz. Çalışma saatleri, üyelik, ödünç verme, veri tabanları, kaynak arama ve APA kaynakça konularında yardımcı olabilirim. Size nasıl yardımcı olabilirim?',
     placeholder: 'Mesajınızı yazın…',
@@ -30,7 +30,7 @@ export const STRINGS = {
       { label: 'APA kaynakça', prefill: 'Şu kaynak için APA 7 kaynakça oluştur (DOI ya da yazar, yıl, başlık, yayıncı): ' },
     ],
     askLibrarian: 'Kütüphaneciye sor',
-    disclaimer: 'Yapay zekâ yanıtları hatalı olabilir. Kesin bilgi için',
+    disclaimer: 'Yanıtlar bilgilendirme amaçlıdır. Kesin bilgi için',
     disclaimerLink: 'kütüphaneye danışın',
     searchTitle: 'Bu aramayı MEF kaynaklarında yapın:',
     searchHint: 'Kampüs dışındaysanız önce',
@@ -67,7 +67,7 @@ export const STRINGS = {
   },
   en: {
     title: 'MEF Library Virtual Assistant',
-    subtitle: 'AI-powered help',
+    subtitle: 'Library help assistant',
     welcome:
       'Hello! Welcome to the MEF University Library Virtual Assistant. I can help with opening hours, membership, borrowing, databases, finding sources and APA references. How can I help you?',
     placeholder: 'Type your message…',
@@ -89,7 +89,7 @@ export const STRINGS = {
       { label: 'APA reference', prefill: 'Create an APA 7 reference for (DOI or author, year, title, publisher): ' },
     ],
     askLibrarian: 'Ask a librarian',
-    disclaimer: 'AI answers may contain mistakes. For definitive information,',
+    disclaimer: 'Answers are for guidance only. For definitive information,',
     disclaimerLink: 'contact the library',
     searchTitle: 'Run this search in MEF resources:',
     searchHint: 'If you are off campus,',

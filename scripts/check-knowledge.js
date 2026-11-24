@@ -6,6 +6,7 @@ import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { knowledgeToPrompt, parseKnowledgeFile, validateKnowledgeDoc } from '../lib/knowledge-parse.js';
+import { parseAnswerFile, validateAnswers } from '../lib/rules.js';
 
 const dir = fileURLToPath(new URL('../knowledge/', import.meta.url));
 const files = (await readdir(dir)).filter((f) => f.endsWith('.md') && !f.startsWith('_')).sort();
@@ -29,8 +30,20 @@ for (const file of files) {
   if (raw.includes('DOĞRULANACAK')) warnings.push(`${file}: kütüphane ekibinin doğrulaması gereken bilgi içeriyor (DOĞRULANACAK)`);
 }
 
+// Hazır yanıtlar (anahtarsız mod)
+const answersDir = path.join(dir, 'yanitlar');
+const answerFiles = (await readdir(answersDir)).filter((f) => f.endsWith('.md') && !f.startsWith('_')).sort();
+const answers = [];
+for (const file of answerFiles) {
+  const raw = await readFile(path.join(answersDir, file), 'utf8');
+  answers.push(...parseAnswerFile(raw, `yanitlar/${file}`));
+  if (raw.includes('DOĞRULANACAK')) warnings.push(`yanitlar/${file}: kütüphane ekibinin doğrulaması gereken bilgi içeriyor (DOĞRULANACAK)`);
+}
+errors.push(...validateAnswers(answers));
+
 const approxTokens = Math.round(knowledgeToPrompt(docs).length / 4);
 console.log(`${files.length} bilgi dosyası, yaklaşık ${approxTokens.toLocaleString('tr-TR')} token.`);
+console.log(`${answers.length} hazır yanıt (${answerFiles.length} dosya).`);
 for (const w of warnings) console.warn(`UYARI: ${w}`);
 if (errors.length) {
   for (const e of errors) console.error(`HATA: ${e}`);

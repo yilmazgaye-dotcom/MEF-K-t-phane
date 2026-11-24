@@ -4,6 +4,17 @@ MEF Üniversitesi Kütüphanesi için yapay zekâ destekli, Türkçe ve İngiliz
 Herhangi bir web sitesine tek satır kodla eklenen, sağ alt köşeden açılan bir sohbet penceresi (widget) ve
 OpenAI'a güvenli biçimde bağlanan küçük bir sunucu uç noktasından oluşur.
 
+**İki çalışma modu vardır:**
+
+| Mod | Ne zaman | Nasıl yanıt verir | Maliyet |
+|---|---|---|---|
+| **Hazır yanıt** (`rules`) | `OPENAI_API_KEY` tanımlı değilken (varsayılan) | `knowledge/yanitlar/` klasöründeki Türkçe/İngilizce hazır yanıtları anahtar kelimelerle eşleştirir | Ücretsiz |
+| **Yapay zekâ** (`ai`) | `OPENAI_API_KEY` tanımlandığında | OpenAI modeli, `knowledge/*.md` bilgi dosyalarına dayanarak serbest metinle yanıt verir | OpenAI kullanım ücreti |
+
+Her iki modda da DOI'den APA 7 kaynakça (Crossref) ve kaynak arama bağlantıları çalışır. Anahtar Vercel'e
+eklenip proje yeniden yayınlandığında asistan kendiliğinden yapay zekâ moduna geçer. Modu zorlamak için
+`ASSISTANT_MODE=rules` ya da `ASSISTANT_MODE=ai` kullanılabilir.
+
 **Neler yapar?**
 
 - Çalışma saatleri, üyelik, ödünç verme, ceza, rezerv, ILL, grup çalışma odaları, kampüs dışı erişim gibi
@@ -38,8 +49,9 @@ library.mef.edu.tr                       Vercel (bu proje)                      
 ```
 api/chat.js            Sohbet uç noktası (akışlı NDJSON yanıt)
 api/health.js          Kurulum kontrolü: /api/health
-lib/                   Sunucu modülleri (OpenAI, güvenlik, bilgi tabanı, APA, Crossref, talimatlar)
+lib/                   Sunucu modülleri (OpenAI, hazır yanıt motoru, güvenlik, bilgi tabanı, APA, Crossref)
 knowledge/             ★ Kütüphane bilgileri — düzenlenebilir Markdown dosyaları (bkz. knowledge/_README.md)
+knowledge/yanitlar/    ★ Anahtarsız mod için Türkçe/İngilizce hazır yanıtlar (bkz. knowledge/yanitlar/_README.md)
 public/widget.js       Sitelere eklenen gömme betiği
 public/embed.html      Sohbet arayüzü (iframe içinde açılır; /embed adresinden tam ekran da çalışır)
 public/index.html      Tanıtım ve deneme sayfası
@@ -74,7 +86,8 @@ docs/                  Kütüphane web ekibi için entegrasyon rehberi
 
    | Değişken | Zorunlu | Açıklama |
    |---|---|---|
-   | `OPENAI_API_KEY` | evet | OpenAI API anahtarı |
+   | `OPENAI_API_KEY` | hayır | OpenAI API anahtarı. Tanımlı değilse asistan ücretsiz hazır yanıt modunda çalışır |
+   | `ASSISTANT_MODE` | hayır | `auto` (varsayılan), `rules` ya da `ai` |
    | `OPENAI_MODEL` | hayır | Varsayılan `gpt-6.1-terra`. Daha düşük maliyet için `gpt-6-luna` |
    | `OPENAI_REASONING_EFFORT` | hayır | Varsayılan `low`. Akıl yürütme desteklemeyen bir model seçerseniz boş bırakın |
    | `OPENAI_MAX_OUTPUT_TOKENS` | hayır | Varsayılan `1500` |
@@ -82,7 +95,8 @@ docs/                  Kütüphane web ekibi için entegrasyon rehberi
    | `ALLOWED_ORIGINS` | hayır | Normalde boş. API'yi başka bir alan adından doğrudan çağıracaksanız virgülle ayrılmış liste |
    | `CROSSREF_MAILTO` | hayır | Crossref'e iletilecek kurumsal iletişim adresi |
 
-3. İlk dağıtımdan sonra `https://PROJE-ADINIZ.vercel.app/api/health` adresini açın: `"ok": true` görmelisiniz.
+3. İlk dağıtımdan sonra `https://PROJE-ADINIZ.vercel.app/api/health` adresini açın: `"ok": true` ve çalışma
+   modunu (`"mode": "rules"` ya da `"ai"`) görmelisiniz. Anahtarı sonradan eklerseniz **Deployments → Redeploy** ile yeniden yayınlayın.
 4. **Önerilen:** Vercel → **Firewall** → yeni kural: `/api/chat` yoluna IP başına (ör. dakikada 10 istek) hız sınırı.
    Kod içindeki sınır her sunucu örneğinde ayrı sayıldığı için kesin koruma Firewall kuralıyla sağlanır.
 
@@ -106,7 +120,11 @@ Widget yalnızca izin verilen sitelerde iframe içinde açılabilir. İzinli lis
 ## Bilgi tabanını güncelleme
 
 Kütüphane bilgileri `knowledge/` klasöründeki Markdown dosyalarındadır; kod bilgisi gerekmez.
-Kurallar için [knowledge/_README.md](knowledge/_README.md) dosyasına bakın.
+
+- `knowledge/*.md` → yapay zekâ modunun kullandığı bilgi dosyaları. Kurallar: [knowledge/_README.md](knowledge/_README.md)
+- `knowledge/yanitlar/*.md` → hazır yanıt modunun soru-yanıtları (Türkçe + İngilizce). Kurallar: [knowledge/yanitlar/_README.md](knowledge/yanitlar/_README.md)
+
+Bir bilgi değiştiğinde iki yeri de güncelleyin.
 
 > ⚠️ **Yayından önce doğrulanmalı:** Kütüphane sitesindeki bazı bilgiler birbiriyle çelişiyor. Bunlar dosyalarda
 > `ÇELİŞKİ` / `DOĞRULANMADI` olarak işaretlendi; asistan bu konularda kesin değer vermek yerine kütüphaneye yönlendirir.
