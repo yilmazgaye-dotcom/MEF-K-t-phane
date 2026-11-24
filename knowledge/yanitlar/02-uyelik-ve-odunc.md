@@ -78,9 +78,9 @@ source: FAQ | https://library.mef.edu.tr/en/sss
 Ödünç alma hakları kullanıcı grubuna göre değişir. Kütüphanenin iki resmî kaynağı farklı sayılar veriyor:
 
 **SSS sayfasına göre:**
-- Lisans, yüksek lisans ve doktora öğrencileri: 30 gün süreyle 30 kitap ve 1 ciltli dergi; 5 gün süreyle 2 DVD
-- Öğretim üyeleri: 90 gün süreyle 50 kitap ve 2 ciltli dergi; 10 gün süreyle 4 DVD
-- İdari personel: 30 gün süreyle 30 kitap ve 1 ciltli dergi; 5 gün süreyle 2 DVD
+- Lisans, yüksek lisans ve doktora öğrencileri: 30 gün süreyle 30 kitap ve 1 ciltli dergi
+- Öğretim üyeleri: 90 gün süreyle 50 kitap ve 2 ciltli dergi
+- İdari personel: 30 gün süreyle 30 kitap ve 1 ciltli dergi
 
 **Ödünç Verme Yönergesi'ne göre:**
 - Öğrenciler, idari personel ve yarı zamanlı öğretim üyeleri: 30 gün süreyle 20 kitap
@@ -93,9 +93,9 @@ Kesin bilgi için library@mef.edu.tr adresinden teyit etmenizi öneririm. Gazete
 Borrowing rights depend on your user group. The library's two official sources give different numbers:
 
 **According to the FAQ:**
-- Undergraduate, master's and PhD students: 30 books and 1 bound journal for 30 days; 2 DVDs for 5 days
-- Faculty members: 50 books and 2 bound journals for 90 days; 4 DVDs for 10 days
-- Administrative staff: 30 books and 1 bound journal for 30 days; 2 DVDs for 5 days
+- Undergraduate, master's and PhD students: 30 books and 1 bound journal for 30 days
+- Faculty members: 50 books and 2 bound journals for 90 days
+- Administrative staff: 30 books and 1 bound journal for 30 days
 
 **According to the Lending Regulation:**
 - Students, administrative staff and part-time faculty: 20 books for 30 days

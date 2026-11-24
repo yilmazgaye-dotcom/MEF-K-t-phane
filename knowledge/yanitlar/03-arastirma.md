@@ -70,15 +70,24 @@ You can search library resources with:
 The collection is arranged by the Library of Congress (LC) classification. For a ready-made search link, type "I am looking for sources on …".
 
 ## koleksiyon
-anahtar: koleksiyon, dvd, film, gazete, basılı, collection, movie, newspaper, printed
+anahtar: koleksiyon, gazete, basılı, collection, newspaper, printed
 kaynak: Koleksiyonlar | https://library.mef.edu.tr/tr/koleksiyonlar
 source: Collections | https://library.mef.edu.tr/en/koleksiyonlar
 
 ### TR
-Kütüphane koleksiyonu basılı ve elektronik kaynaklardan (kitap, e-kitap, süreli yayın ve veri tabanları) oluşur. **DVD film koleksiyonu bulunmamaktadır.** Gazeteler ödünç verilmez.
+Kütüphane koleksiyonu basılı ve elektronik kaynaklardan (kitap, e-kitap, süreli yayın ve veri tabanları) oluşur. Gazeteler ödünç verilmez.
 
 ### EN
-The collection consists of printed and electronic resources (books, e-books, journals and databases). **There is no DVD film collection.** Newspapers cannot be borrowed.
+The collection consists of printed and electronic resources (books, e-books, journals and databases). Newspapers cannot be borrowed.
+
+## cd-dvd
+anahtar: cd, dvd, kaç dvd, kaç cd, dvd ödünç, cd ödünç, dvd var, cd var, cd rom, dvd rom, film arşivi, movie, film
+
+### TR
+CD ve DVD ile ilgili sorularınız için lütfen doğrudan kütüphaneye danışın: [Kütüphaneciye Sor](https://form.jotform.com/241372416279964), library@mef.edu.tr ya da 0 212 395 3762.
+
+### EN
+For questions about CDs and DVDs, please contact the library directly: [Ask a Librarian](https://form.jotform.com/241372416279964), library@mef.edu.tr or +90 212 395 3762.
 
 ## odalar
 anahtar: grup çalışma, çalışma oda, oda, rezervasyon, ai cafe, booking, group study, study room, room

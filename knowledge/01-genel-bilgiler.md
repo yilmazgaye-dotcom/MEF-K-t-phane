@@ -28,7 +28,6 @@ updated: 2026-11-23
 ## Koleksiyon
 - Koleksiyon basılı ve elektronik kaynaklardan (kitap, e-kitap, süreli yayın, veri tabanları) oluşur.
 - Kaynaklar Kongre Kütüphanesi Sınıflama Sistemi'ne (LC – Library of Congress) göre yerleştirilmiştir.
-- DVD film koleksiyonu bulunmamaktadır.
 - Elektronik kaynaklara kampüs içinden ve kampüs dışı erişim ile dışarıdan 7/24 erişilebilir.
 
 ## Üyelikler ve projeler

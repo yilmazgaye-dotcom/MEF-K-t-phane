@@ -19,14 +19,17 @@ adetleri ve süreleri veriyor. Doğru değerler netleşince "ÇELİŞKİ" bölü
 İki resmî kaynak farklı değerler veriyor. Kullanıcıya iki kaynağı da belirt ve kesin bilgi için kütüphaneye danışmasını öner.
 
 SSS sayfasına göre:
-- Lisans öğrencileri: 30 gün süreyle 30 kitap ve 1 ciltli dergi; 5 gün süreyle 2 DVD
-- Yüksek lisans ve doktora öğrencileri: 30 gün süreyle 30 kitap ve 1 ciltli dergi; 5 gün süreyle 2 DVD
-- Öğretim üyeleri: 90 gün süreyle 50 kitap ve 2 ciltli dergi; 10 gün süreyle 4 DVD
-- İdari personel: 30 gün süreyle 30 kitap ve 1 ciltli dergi; 5 gün süreyle 2 DVD
+- Lisans öğrencileri: 30 gün süreyle 30 kitap ve 1 ciltli dergi
+- Yüksek lisans ve doktora öğrencileri: 30 gün süreyle 30 kitap ve 1 ciltli dergi
+- Öğretim üyeleri: 90 gün süreyle 50 kitap ve 2 ciltli dergi
+- İdari personel: 30 gün süreyle 30 kitap ve 1 ciltli dergi
 
 Okuyucu Hizmetleri ve Ödünç Verme Yönergesi'ne (PDF) göre:
-- Öğretim üyeleri: 45 gün süreyle 45 kitap ve 1 ciltli dergi; 5 gün süreyle 2 DVD; 15 gün süreyle sınırsız e-kitap; 2 uzatma hakkı. Tam zamanlı öğretim üyeleri talep ederse 20 basılı kitabı 90 gün süreyle dönemlik ödünç alabilir.
-- Yarı zamanlı öğretim üyeleri, idari personel, lisans, yüksek lisans ve doktora öğrencileri: 30 gün süreyle 20 kitap ve 1 ciltli dergi; 5 gün süreyle 2 DVD; 15 gün süreyle sınırsız e-kitap; 2 uzatma hakkı.
+- Öğretim üyeleri: 45 gün süreyle 45 kitap ve 1 ciltli dergi; 15 gün süreyle sınırsız e-kitap; 2 uzatma hakkı. Tam zamanlı öğretim üyeleri talep ederse 20 basılı kitabı 90 gün süreyle dönemlik ödünç alabilir.
+- Yarı zamanlı öğretim üyeleri, idari personel, lisans, yüksek lisans ve doktora öğrencileri: 30 gün süreyle 20 kitap ve 1 ciltli dergi; 15 gün süreyle sınırsız e-kitap; 2 uzatma hakkı.
+
+<!-- Kütüphanenin isteğiyle CD/DVD bilgisi asistandan çıkarıldı (24.11.2026). -->
+- CD ve DVD hakkında bilgi verme; bu konudaki soruları kütüphaneye yönlendir.
 
 ## Ödünç verilmeyen materyaller
 - Gazeteler, mikroformlar, slaytlar ve referans kaynakları ödünç verilmez.
