@@ -11,7 +11,7 @@ updated: 2026-11-23
 - Basılı Kitaplar: kütüphane kataloğu (VuFind): https://libcatalog.mef.edu.tr/vufind/ — tüm alanlar, eser adı, yazar, konu, ISBN ve ISSN ile aranabilir.
 - Dergiler: EBSCO dergi listesi (A–Z); dergi adı, konu, ISSN veya yayıncıya göre arama.
 - MEF GCRIS Veritabanı: MEF'in araştırma bilgi sistemi (üniversite mensuplarının yayınları): https://gcris.mef.edu.tr/
-- Kurumsal Hafıza (açık erişim arşivi): https://openaccess.mef.edu.tr/xmlui/
+<!-- Kurumsal Hafıza (openaccess.mef.edu.tr) 24.11.2026'da açılmadığı ve ana sayfada artık bağlantısı olmadığı için çıkarıldı. Yeniden yayına girerse buraya ekleyin. -->
 - EBSCO arama yardımı: https://connect.ebsco.com/s/article/T%C3%BCrk%C3%A7e-Kaynaklar
 
 ## Katalog tarama ipuçları (SSS)
