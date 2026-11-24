@@ -539,6 +539,8 @@ function bindEvents() {
     const data = e.data;
     if (!data || data.source !== NS) return;
     if (data.type === 'focus') els.input.focus({ preventScroll: true });
+    // Sayfadaki "Asistana sorun" düğmesi/formundan gelen soru doğrudan gönderilir.
+    if (data.type === 'ask' && typeof data.text === 'string' && !state.busy) send(data.text.slice(0, MAX_CHARS));
   });
 }
 

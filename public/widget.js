@@ -8,8 +8,15 @@
  *   data-lang      "auto" (varsayılan; sayfanın lang özniteliğine ve /en/ yoluna bakar), "tr" veya "en"
  *   data-position  "right" (varsayılan) veya "left"
  *   data-open      "true" ise sayfa açılınca sohbet açık gelir
+ *   data-launcher  "false" ise sağ alttaki yuvarlak düğme gösterilmez (asistan sayfadaki kendi
+ *                  düğmenizle açılır)
  *
- * JavaScript API: window.MEFLibraryAssistant.open() / .close() / .toggle()
+ * Sayfadaki kendi düğmeniz / formunuz (ek JavaScript gerekmez):
+ *   <button type="button" data-mef-assistant-open>Sanal Asistana Sor</button>
+ *   <button type="button" data-mef-assistant-open="Çalışma saatleri nedir?">Çalışma saatleri</button>
+ *   <form data-mef-assistant-ask><input name="q" placeholder="Asistana sorun"><button>Sor</button></form>
+ *
+ * JavaScript API: window.MEFLibraryAssistant.open() / .close() / .toggle() / .ask('soru')
  *
  * Güvenlik: Bu betik API anahtarı içermez. Sohbet, asistanın kendi alan adından yüklenen bir
  * iframe içinde çalışır; sitenizin stilleri ve kodu etkilenmez.
@@ -30,6 +37,7 @@
   var NS = 'mef-library-assistant';
   var data = script.dataset || {};
   var position = data.position === 'left' ? 'left' : 'right';
+  var showLauncher = data.launcher !== 'false';
   var lang = resolveLang(data.lang);
 
   var LABELS = {
@@ -65,6 +73,8 @@
     '.panel{position:absolute;bottom:76px;right:0;width:380px;height:min(640px,calc(100vh - 120px));background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.25);animation:pop .18s ease-out}',
     '.pos-left .panel{right:auto;left:0}',
     '.panel[hidden]{display:none}',
+    '.no-launcher .launcher{display:none}',
+    '.no-launcher .panel{bottom:0}',
     '.panel iframe{display:block;width:100%;height:100%;border:0}',
     '@keyframes pop{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}',
     '@media (max-width:480px){.panel{position:fixed;inset:0;width:100%;height:100%;border-radius:0;bottom:0}.is-open .launcher{display:none}}',
@@ -93,7 +103,7 @@
   applyStyles(root, CSS);
 
   var wrap = document.createElement('div');
-  wrap.className = 'wrap pos-' + position;
+  wrap.className = 'wrap pos-' + position + (showLauncher ? '' : ' no-launcher');
 
   var panel = document.createElement('div');
   panel.className = 'panel';
@@ -114,7 +124,10 @@
   root.appendChild(wrap);
 
   var iframe = null;
+  var frameReady = false;
+  var pending = [];
   var isOpen = false;
+  var lastTrigger = null;
   var mobileQuery = window.matchMedia ? window.matchMedia('(max-width: 480px)') : null;
   var savedOverflow = '';
 
@@ -122,6 +135,12 @@
     if (!iframe || !iframe.contentWindow) return;
     message.source = NS;
     iframe.contentWindow.postMessage(message, BASE);
+  }
+
+  // Sohbet sayfası yüklenene kadar mesajları sıraya alır.
+  function deliver(message) {
+    if (frameReady) post(message);
+    else pending.push(message);
   }
 
   function ensureFrame() {
@@ -132,6 +151,8 @@
     iframe.setAttribute('allow', 'clipboard-write');
     iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
     iframe.addEventListener('load', function () {
+      frameReady = true;
+      while (pending.length) post(pending.shift());
       if (isOpen) post({ type: 'focus' });
     });
     panel.appendChild(iframe);
@@ -168,7 +189,8 @@
     button.setAttribute('aria-expanded', 'false');
     button.setAttribute('aria-label', L.open);
     lockScroll(false);
-    button.focus();
+    var target = showLauncher ? button : lastTrigger;
+    if (target && typeof target.focus === 'function') target.focus();
   }
 
   function toggle() {
@@ -176,7 +198,39 @@
     else open();
   }
 
-  button.addEventListener('click', toggle);
+  // Asistanı açar ve soruyu doğrudan gönderir.
+  function ask(text) {
+    var question = String(text == null ? '' : text).trim().slice(0, 2000);
+    open();
+    if (question) deliver({ type: 'ask', text: question });
+  }
+
+  button.addEventListener('click', function () {
+    lastTrigger = button;
+    toggle();
+  });
+
+  // Sayfadaki [data-mef-assistant-open] düğmeleri ve [data-mef-assistant-ask] formları
+  document.addEventListener('click', function (event) {
+    var el = event.target && event.target.closest ? event.target.closest('[data-mef-assistant-open]') : null;
+    if (!el) return;
+    event.preventDefault();
+    lastTrigger = el;
+    var question = el.getAttribute('data-mef-assistant-open');
+    if (question) ask(question);
+    else if (isOpen) close();
+    else open();
+  });
+
+  document.addEventListener('submit', function (event) {
+    var form = event.target && event.target.closest ? event.target.closest('[data-mef-assistant-ask]') : null;
+    if (!form) return;
+    event.preventDefault();
+    lastTrigger = form.querySelector('button, [type="submit"]') || form;
+    var input = form.querySelector('input:not([type="hidden"]):not([type="submit"]), textarea');
+    ask(input ? input.value : '');
+    if (input) input.value = '';
+  });
 
   window.addEventListener('message', function (event) {
     if (event.origin !== BASE || !iframe || event.source !== iframe.contentWindow) return;
@@ -197,5 +251,5 @@
   if (document.body) mount();
   else document.addEventListener('DOMContentLoaded', mount);
 
-  window.MEFLibraryAssistant = { open: open, close: close, toggle: toggle, version: '2.0.0' };
+  window.MEFLibraryAssistant = { open: open, close: close, toggle: toggle, ask: ask, version: '2.0.0' };
 })();
