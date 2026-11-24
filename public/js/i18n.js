@@ -9,8 +9,7 @@ export const STRINGS = {
   tr: {
     title: 'MEF Kütüphane Sanal Asistanı',
     subtitle: 'Kütüphane bilgi asistanı',
-    welcome:
-      'Merhaba! MEF Üniversitesi Kütüphanesi Sanal Asistanı\'na hoş geldiniz. Çalışma saatleri, üyelik, ödünç verme, veri tabanları, kaynak arama ve APA kaynakça konularında yardımcı olabilirim. Size nasıl yardımcı olabilirim?',
+    welcome: 'Merhaba! MEF Üniversitesi Kütüphanesi Sanal Asistanı\'na hoş geldiniz.',
     placeholder: 'Mesajınızı yazın…',
     inputLabel: 'Mesajınız',
     send: 'Gönder',
@@ -68,8 +67,7 @@ export const STRINGS = {
   en: {
     title: 'MEF Library Virtual Assistant',
     subtitle: 'Library help assistant',
-    welcome:
-      'Hello! Welcome to the MEF University Library Virtual Assistant. I can help with opening hours, membership, borrowing, databases, finding sources and APA references. How can I help you?',
+    welcome: 'Hello! Welcome to the MEF University Library Virtual Assistant.',
     placeholder: 'Type your message…',
     inputLabel: 'Your message',
     send: 'Send',
